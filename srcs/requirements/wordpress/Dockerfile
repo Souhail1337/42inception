@@ -1,14 +1,9 @@
 FROM debian:buster
+COPY tools/wordpress wordpress
 
-RUN apt update -y
-RUN apt upgrade -y
+COPY tools/setup.sh setup.sh
+RUN chmod +x setup.sh
 
-RUN apt install tar -y
+COPY tools/www.conf www.conf
 
-COPY tools/wordpress-5.5.3.tar.gz /
-RUN tar -xzvf wordpress-5.5.3.tar.gz
-RUN mv /wordpress/* /var/www/wordpress/
-
-COPY tools/wp-config.php /var/www/wordpress/
-COPY RUN chown -R www-data /var/www/wordpress
-
+CMD ["sh", "setup.sh"]
