@@ -1,12 +1,12 @@
 FROM debian:buster 
-expose 80 443 3606
-
-
 RUN apt update -y
 RUN apt upgrade -y
-RUN apt install nginx -y
-RUN apt install openssl
-RUN install ap-utils -y
-RUN mkdir /etc/nginx/ssl
-RUN chmod -R 600 /etc/nginx/ssl 
-RUN apt install tar -y
+RUN apt install mariadb-server -y
+RUN apt install -y ufw iptables
+RUN ufw allow 3306
+
+
+COPY srcs/conf conf
+COPY srcs/script.sh /script.sh
+RUN chmod +x script.sh
+CMD ["sh", "script.sh"]
