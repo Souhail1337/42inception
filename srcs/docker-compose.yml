@@ -37,3 +37,24 @@ services:
 networks:
   wordpress:
     driver: bridge
+  
+  volumes:
+    mariadb:
+      driver: local
+      driver_opts:
+        type: 'none'
+        o: 'bind'
+        device: '/home/inception-selfcht/data/mariadb'
+    wordpress:
+      driver: local
+      driver_opts:
+        type: 'none'
+        o: 'bind'
+        device: '/home/inception-selfcht/data/wordpress'
+    nginx:
+      driver: local
+      driver_opts:
+        type: 'none'
+        o: 'bind'
+        device: '/home/inception-selfcht/data/nginx'
+
