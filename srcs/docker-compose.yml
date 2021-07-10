@@ -1,28 +1,7 @@
 version: '3'
 
 services:
-  nginx:
-    build: ./requirements/nginx
-    container_name: nginx
-    ports:
-      - 443:443
-    volumes:
-      - /home/inception-selfcht/data/html:/var/www/html
-    networks:
-      - wordpress
-
-  wordpress:
-    build: ./requirements/wordpress
-    container_name: wordpress
-    depends_on:
-      -mariadb
-    volumes:
-      - /home/inception-selfcht/data/html:/var/www/html
-    networks:
-      - wordpress
-    env_file:
-      - .env
-  mariadb:
+    mariadb:
     build : ./requirements/mariadb
     container_name: mariadb
     restart: always
@@ -33,9 +12,30 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - /home/inception-selfcht/data/mysql:/var/lib/mysql
+      - /home/sel-fcht/data/mysql:/var/lib/mysql
       - mariadb:/var/lib/mysql/
-  
+  nginx:
+    build: ./requirements/nginx
+    container_name: nginx
+    ports:
+      - 443:443
+    volumes:
+      - /home/sel-fcht/data/html:/var/www/html
+    networks:
+      - wordpress
+
+  wordpress:
+    build: ./requirements/wordpress
+    container_name: wordpress
+    depends_on:
+      -mariadb
+    volumes:
+      - /home/sel-fcht/data/html:/var/www/html
+    networks:
+      - wordpress
+    env_file:
+      - .env
+
 
 networks:
   wordpress:
@@ -47,17 +47,17 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/inception-selfcht/data/mariadb'
+      device: '/home/sel-fcht/data/mysql'
   wordpress:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/inception-selfcht/data/wordpress'
+      device: '/home/sel-fcht/data/html'
   nginx:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/inception-selfcht/data/nginx'
+      device: '/home/sel-fcht/data/nginx'
 

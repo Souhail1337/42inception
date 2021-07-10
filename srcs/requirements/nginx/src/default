@@ -48,7 +48,7 @@ server {
 
 
 
-	server_name localhost;
+	server_name _;
 	access_log /var/log/nginx/wordpress_access.log;
 	error_log /var/log/nginx/wordpress_error.log;
 

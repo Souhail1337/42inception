@@ -1,6 +1,6 @@
-rm -rf /home/inception-selfcht/data/mariadb/*
-rm -rf /home/inception-selfcht/data/nginx/*
-rm -rf /home/inception-selfcht/data/wordpress/*
+rm -rf /home/sel-fcht/data/mariadb/*
+rm -rf /home/sel-fcht/data/nginx/*
+rm -rf /home/sel-fcht/data/wordpress/*
 
 if [ "$(docker ps -qa)" ]; then
     docker stop $(docker ps -qa);
