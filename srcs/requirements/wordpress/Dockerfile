@@ -1,11 +1,11 @@
 FROM debian:buster
 RUN apt-get update && apt-get upgrade -y
 RUN apt -y install php7.3-fpm php7.3-common php7.3-mysql php
-COPY tools/wordpress wordpress
+COPY tools/wordpress /wordpress
 
-COPY tools/setup.sh setup.sh
+COPY tools/setup.sh /setup.sh
 RUN chmod +x setup.sh
 
-COPY tools/www.conf www.conf
+COPY tools/www.conf /
 
 CMD ["sh", "setup.sh"]
