@@ -6,6 +6,6 @@ RUN apt install -y ufw iptables
 RUN ufw allow 3306
 COPY srcs/conf conf
 COPY srcs/script.sh /script.sh
-
+COPY srcs/wp_db.sql /
 RUN chmod +x script.sh
 CMD ["sh", "script.sh"]

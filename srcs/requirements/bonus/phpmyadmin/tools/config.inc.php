@@ -9,7 +9,7 @@
  *
  * @package PhpMyAdmin
  */
-
+declare(strict_types=1);
 /*
  * This is needed for cookie based authentication to encrypt password in
  * cookie
@@ -33,11 +33,11 @@ $cfg['Servers'][$i]['auth_type'] = 'cookie';
 #$cfg['Servers'][$i]['password'] = '';
 /* Server parameters */
 $cfg['Servers'][$i]['host'] = 'mariadb';
-$cfg['Servers'][$i]['connect_type'] = 'tcp';
+#$cfg['Servers'][$i]['connect_type'] = 'tcp';
 $cfg['Servers'][$i]['compress'] = false;
 /* Select mysql if your server does not have mysqli */
 #$cfg['Servers'][$i]['extension'] = 'mysqli';
-$cfg['Servers'][$i]['AllowNoPassword'] = true;
+$cfg['Servers'][$i]['AllowNoPassword'] = false;
 
 
 $cfg['UploadDir'] = '';
