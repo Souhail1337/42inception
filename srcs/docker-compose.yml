@@ -10,18 +10,20 @@ services:
     networks:
       - wordpress
     ports:
-      - 3306:3306
+      - "3306:3306"
     volumes:
-      - /home/sel-fcht/data/mysql:/var/lib/mysql
+      - DB:/var/lib/mysql
   nginx:
+    depends_on: 
+      - wordpress
     build: ./requirements/nginx
+    image: nginx 
     container_name: nginx
+    restart: unless-stopped
     ports:
-      - 443:443
+      - "443:443"
     volumes:
-      - /home/sel-fcht/data/html:/var/www/html
-      - adminer:/var/www/html/adminer
-      - phpmyadmin:/var/www/html/phpmyadmin
+      - Wordpress:/var/www/html
     networks:
       - wordpress
 
@@ -31,62 +33,26 @@ services:
     depends_on:
       - mariadb
     volumes:
-      - /home/sel-fcht/data/html:/var/www/html
-      - adminer:/var/www/html/adminer
-      - phpmyadmin:/var/www/html/phpmyadmin
+      - Wordpress:/var/www/html
+    ports: 
+      - "9000"
     networks:
       - wordpress
     env_file:
       - .env
-  adminer:
-    build: ./requirements/bonus/adminer
-    container_name: adminer
-    restart: on-failure
-    networks:
-      - wordpress
-    volumes:
-      - adminer:/usr/share/adminer/adminer
-  phpmyadmin:
-    build: ./requirements/bonus/phpmyadmin
-    container_name: phpmyadmin
-    restart: always
-    volumes: 
-      - phpmyadmin:/usr/share/phpmyadmin
-    networks: 
-      - wordpress
-    image : phpmyadmin
+volumes:
+  Wordpress:
+    driver_opts:
+      type: none
+      device: /home/sel-fcht/data/Wordpress
+      o: bind
+  DB:
+    driver_opts: 
+      type: none
+      device: /home/sel-fcht/data/DB
+      o: bind
+
 networks:
   wordpress:
     driver: bridge
-  
-volumes:
-  mariadb:
-    driver: local
-    driver_opts:
-      type: 'none'
-      o: 'bind'
-      device: '/home/sel-fcht/data/mysql'
-  wordpress:
-    driver: local
-    driver_opts:
-      type: 'none'
-      o: 'bind'
-      device: '/home/sel-fcht/data/html'
-  nginx:
-    driver: local
-    driver_opts:
-      type: 'none'
-      o: 'bind'
-      device: '/home/sel-fcht/data/html' 
-  adminer:
-      driver: local
-      driver_opts:
-        type: 'none' 
-        o: 'bind'   
-        device: '/home/sel-fcht/data/adminer'   
-  phpmyadmin:
-      driver: local
-      driver_opts: 
-        type: 'none'
-        o: 'bind'
-        device: 'home/sel-fcht/data/phpmyadmin'
+        

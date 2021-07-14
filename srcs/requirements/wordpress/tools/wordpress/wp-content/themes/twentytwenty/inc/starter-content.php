@@ -20,7 +20,7 @@
  */
 function twentytwenty_get_starter_content() {
 
-	// Define and register starter content to showcase the theme on new sites.
+	// Define and register starter content to website the theme on new sites.
 	$starter_content = array(
 		'widgets'     => array(
 			// Place one core-defined widgets in the first footer widget area.

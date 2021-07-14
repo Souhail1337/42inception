@@ -128,7 +128,7 @@ function twentyseventeen_setup() {
 	// Add support for responsive embeds.
 	add_theme_support( 'responsive-embeds' );
 
-	// Define and register starter content to showcase the theme on new sites.
+	// Define and register starter content to website the theme on new sites.
 	$starter_content = array(
 		'widgets'     => array(
 			// Place three core-defined widgets in the sidebar area.
