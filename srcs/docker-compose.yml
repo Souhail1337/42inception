@@ -24,6 +24,8 @@ services:
       - "443:443"
     volumes:
       - Wordpress:/var/www/html
+      - phpmyadmin:/var/www/html/phpmyadmin
+      - adminer:/var/www/html/adminer
     networks:
       - wordpress
 
@@ -34,12 +36,35 @@ services:
       - mariadb
     volumes:
       - Wordpress:/var/www/html
+      - phpmyadmin:/var/www/html/phpmyadmin
+      - adminer:/var/www/html/adminer
     ports: 
       - "9000"
     networks:
       - wordpress
     env_file:
       - .env
+  phpmyadmin:
+    build: ./requirements/bonus/phpmyadmin
+    restart: on-failure
+    volumes:
+      - phpmyadmin:/usr/share/phpmyadmin
+    networks: 
+      - wordpress
+    container_name: "phpmyadmin"
+    image: "phpmyadmin"
+  adminer:
+      build: ./requirements/bonus/adminer
+      depends_on: 
+        - nginx
+      image: adminer
+      container_name: adminer
+      restart: unless-stopped
+      volumes:
+        - adminer:/usr/share/adminer/adminer
+      networks: 
+        - wordpress
+
 volumes:
   Wordpress:
     driver_opts:
@@ -51,6 +76,18 @@ volumes:
       type: none
       device: /home/sel-fcht/data/DB
       o: bind
+  phpmyadmin:
+    driver: local
+    driver_opts: 
+      type: 'none'
+      o: 'bind'
+      device: 'home/sel-fcht/data/phpmyadmin'
+  adminer:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/sel-fcht/data/adminer'
 
 networks:
   wordpress:

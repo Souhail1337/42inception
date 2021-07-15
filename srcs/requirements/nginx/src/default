@@ -60,7 +60,7 @@ server {
 	# pass PHP scripts to FastCGI server
 	#
 	location ~ \.php$ {
-  		fastcgi_split_path_info ^(.+\.php)(/.+)$;
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
   		fastcgi_index index.php;
   		include fastcgi_params;
 		fastcgi_pass wordpress:9000;
