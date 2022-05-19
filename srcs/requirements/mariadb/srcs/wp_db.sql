@@ -394,7 +394,7 @@ CREATE TABLE `wp_users` (
 
 LOCK TABLES `wp_users` WRITE;
 /*!40000 ALTER TABLE `wp_users` DISABLE KEYS */;
-INSERT INTO `wp_users` VALUES (1,'sel-fcht','$P$BAI2mTnXN2MiqLwRVFm4.aFuhOJBJ20','sel-fcht','sel-fcht@student.1337.ma','https://sel-fcht.42.fr','2021-07-12 18:43:45','',0,'sel-fcht'),(2,'test','$P$BABwlskcyx9HH.j6kJZFchQ/pbBXRp0','test','test@gmail.com','','2021-07-14 20:33:32','1626294813:$P$BXb2gs8B7yeeBqobSaTNvr4gXz0DZn/',0,'test test');
+INSERT INTO `wp_users` VALUES (1,'sel-fcht','63210e0dda7cf5b93978589a77ff48ca','sel-fcht','sel-fcht@student.1337.ma','https://sel-fcht.42.fr','2021-07-12 18:43:45','',0,'sel-fcht'),(2,'test','$P$BABwlskcyx9HH.j6kJZFchQ/pbBXRp0','test','test@gmail.com','','2021-07-14 20:33:32','1626294813:$P$BXb2gs8B7yeeBqobSaTNvr4gXz0DZn/',0,'test test');
 /*!40000 ALTER TABLE `wp_users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

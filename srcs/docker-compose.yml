@@ -24,7 +24,7 @@ services:
       - "443:443"
     volumes:
       - Wordpress:/var/www/html
-     # - phpmyadmin:/var/www/html/phpmyadmin
+      - phpmyadmin:/var/www/html/phpmyadmin
       - adminer:/var/www/html/adminer
     networks:
       - wordpress
@@ -36,7 +36,7 @@ services:
       - mariadb
     volumes:
       - Wordpress:/var/www/html
-      #- phpmyadmin:/var/www/html/phpmyadmin
+      - phpmyadmin:/var/www/html/phpmyadmin
       - adminer:/var/www/html/adminer
     ports: 
       - "9000"
@@ -44,15 +44,17 @@ services:
       - wordpress
     env_file:
       - .env
-#  phpmyadmin:
-#     build: ./requirements/bonus/phpmyadmin
-#     restart: on-failure
-#     volumes:
-#       - phpmyadmin:/usr/share/phpmyadmin
-#     networks: 
-#       - wordpress
-#     container_name: "phpmyadmin"
-#     image: "phpmyadmin"
+  phpmyadmin:
+    build: ./requirements/bonus/phpmyadmin
+    depends_on:
+        - nginx
+    restart: unless-stopped
+    volumes:
+      - phpmyadmin:/usr/share/phpmyadmin
+    networks: 
+      - wordpress
+    container_name: "phpmyadmin"
+    image: "phpmyadmin"
   adminer:
       build: ./requirements/bonus/adminer
       depends_on: 
@@ -76,12 +78,12 @@ volumes:
       type: none
       device: /home/souhail/data/DB
       o: bind
- # phpmyadmin:
-  #  driver: local
-   # driver_opts: 
-    #  type: 'none'
-     # o: 'bind'
-      #device: 'home/souhail/data/phpmyadmin'
+  phpmyadmin:
+    driver: local
+    driver_opts: 
+      type: 'none'
+      o: 'bind'
+      device: 'home/souhail/data/phpmyadmin'
   adminer:
     driver: local
     driver_opts:
