@@ -46,8 +46,8 @@
  *
  * Registered for URLs with the "memcached" protocol
  *
- * For example, `memcached://localhost:11211/?timeout=3600&prefix=sp_` will
- * connect to memcached on `localhost` on port 11211. All tables will be
+ * For example, `memcached://sel-fcht.42.fr:11211/?timeout=3600&prefix=sp_` will
+ * connect to memcached on `sel-fcht.42.fr` on port 11211. All tables will be
  * prefixed with `sp_` and data will expire after 3600 seconds
  *
  * @package    SimplePie

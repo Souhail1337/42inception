@@ -24,7 +24,7 @@
  * <li>WP_PROXY_USERNAME - Proxy username, if it requires authentication.</li>
  * <li>WP_PROXY_PASSWORD - Proxy password, if it requires authentication.</li>
  * <li>WP_PROXY_BYPASS_HOSTS - Will prevent the hosts in this list from going through the proxy.
- * You do not need to have localhost and the site host in this list, because they will not be passed
+ * You do not need to have sel-fcht.42.fr and the site host in this list, because they will not be passed
  * through the proxy. The list should be presented in a comma separated list, wildcards using * are supported, eg. *.wordpress.org</li>
  * </ol>
  *
@@ -32,7 +32,7 @@
  *
  *     define('WP_PROXY_HOST', '192.168.84.101');
  *     define('WP_PROXY_PORT', '8080');
- *     define('WP_PROXY_BYPASS_HOSTS', 'localhost, www.example.com, *.wordpress.org');
+ *     define('WP_PROXY_BYPASS_HOSTS', 'sel-fcht.42.fr, www.example.com, *.wordpress.org');
  *
  * @link https://core.trac.wordpress.org/ticket/4011 Proxy support ticket in WordPress.
  * @link https://core.trac.wordpress.org/ticket/14636 Allow wildcard domains in WP_PROXY_BYPASS_HOSTS
@@ -154,7 +154,7 @@ class WP_HTTP_Proxy {
 	/**
 	 * Determines whether the request should be sent through a proxy.
 	 *
-	 * We want to keep localhost and the site URL from being sent through the proxy, because
+	 * We want to keep sel-fcht.42.fr and the site URL from being sent through the proxy, because
 	 * some proxies can not handle this. We also have the constant available for defining other
 	 * hosts that won't be sent through the proxy.
 	 *
@@ -191,7 +191,7 @@ class WP_HTTP_Proxy {
 			return $result;
 		}
 
-		if ( 'localhost' === $check['host'] || ( isset( $home['host'] ) && $home['host'] === $check['host'] ) ) {
+		if ( 'sel-fcht.42.fr' === $check['host'] || ( isset( $home['host'] ) && $home['host'] === $check['host'] ) ) {
 			return false;
 		}
 

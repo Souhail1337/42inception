@@ -117,7 +117,7 @@ class SimplePie_IRI
 			'port' => 2628
 		),
 		'file' => array(
-			'ihost' => 'localhost'
+			'ihost' => 'sel-fcht.42.fr'
 		),
 		'http' => array(
 			'port' => 80,

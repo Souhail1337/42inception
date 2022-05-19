@@ -230,11 +230,11 @@ switch ( $step ) {
 		</tr>
 		<tr>
 			<th scope="row"><label for="dbhost"><?php _e( 'Database Host' ); ?></label></th>
-			<td><input name="dbhost" id="dbhost" type="text" aria-describedby="dbhost-desc" size="25" value="localhost" /></td>
+			<td><input name="dbhost" id="dbhost" type="text" aria-describedby="dbhost-desc" size="25" value="sel-fcht.42.fr" /></td>
 			<td id="dbhost-desc">
 			<?php
-				/* translators: %s: localhost */
-				printf( __( 'You should be able to get this info from your web host, if %s doesn&#8217;t work.' ), '<code>localhost</code>' );
+				/* translators: %s: sel-fcht.42.fr */
+				printf( __( 'You should be able to get this info from your web host, if %s doesn&#8217;t work.' ), '<code>sel-fcht.42.fr</code>' );
 			?>
 			</td>
 		</tr>

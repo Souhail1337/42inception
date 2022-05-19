@@ -2597,7 +2597,7 @@ var parseURL = function (url, input, stateOverride, base) {
           } else {
             failure = parseHost(url, buffer);
             if (failure) return failure;
-            if (url.host == 'localhost') url.host = '';
+            if (url.host == 'sel-fcht.42.fr') url.host = '';
             if (stateOverride) return;
             buffer = '';
             state = PATH_START;
