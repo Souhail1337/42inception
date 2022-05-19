@@ -26,6 +26,7 @@ services:
       - Wordpress:/var/www/html
       - phpmyadmin:/var/www/html/phpmyadmin
       - adminer:/var/www/html/adminer
+      - showcase:/var/www/html/showcase
     networks:
       - wordpress
 
@@ -38,6 +39,7 @@ services:
       - Wordpress:/var/www/html
       - phpmyadmin:/var/www/html/phpmyadmin
       - adminer:/var/www/html/adminer
+      - showcase:/var/www/html/showcase
     ports: 
       - "9000"
     networks:
@@ -66,6 +68,19 @@ services:
         - adminer:/usr/share/adminer/adminer
       networks: 
         - wordpress
+  showcase:
+      build: ./requirements/bonus/showcase
+      depends_on:
+        - nginx
+      image: showcase
+      container_name: showcase
+      restart: always
+      volumes:
+        - showcase:/var/www/html/showcase
+      networks: 
+        - wordpress
+      ports: 
+        - "7777:7777"
 
 volumes:
   Wordpress:
@@ -90,6 +105,12 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '/home/souhail/data/adminer'
+  showcase:
+    driver: local
+    driver_opts: 
+      type: 'none'
+      o: 'bind'
+      device: '/home/souhail/data/showcase'
 
 networks:
   wordpress:

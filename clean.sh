@@ -2,6 +2,7 @@ rm -rf /home/souhail/data/DB/*
 rm -rf /home/souhail/data/Wordpress/*
 rm -rf /home/souhail/data/adminer/*
 rm -rf /home/souhail/data/phpmyadmin/*
+rm -rf /home/souhail/data/showcase/*
 
 if  [ "$(docker ps -qa)" ]; then
     docker stop $(docker ps -qa);
