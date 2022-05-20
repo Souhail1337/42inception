@@ -92,8 +92,26 @@ services:
         - 6379:6379
       networks: 
         - wordpress
-      
-
+      env_file: 
+        - .env
+  ftps:
+      env_file: 
+        - .env
+      build: 
+        context: ./requirements/bonus/ftps
+        args:
+              FTP_USER: ftpuser
+              FTP_PASSWORD: password
+      container_name: ftps
+      image: ftps
+      networks: 
+        - wordpress
+      volumes:
+        - Wordpress:/var/www/html/
+      ports: 
+        - "20:20"
+        - "21:21"
+        - "1024-1048:1024-1048"
 volumes:
   Wordpress:
     driver_opts:

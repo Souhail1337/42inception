@@ -1,11 +1,11 @@
 
-#!bin/sh
-
-# change some settings in conf file
-sed -i "s|bind 127.0.0.1|#bind 127.0.0.1|g" /etc/redis/redis.conf
-sed -i "s|maxmemory <bytes>|maxmemory 256mb|g" /etc/redis/redis.conf
-sed -i "s|maxmemory-policy noeviction|maxmemory-policy allkeys-lfu|g" /etc/redis/redis.conf
-sed -i "s|protected-mode yes|protected-mode no|g" /etc/redis/redis.conf
-
-# make the server run in the foreground
-/usr/bin/redis-server /etc/redis/redis.conf
+echo "requirepass " ${REDIS_PASSWORD} >> /etc/redis/custom.conf
+echo "maxmemory " ${REDIS_MAXMEMORY} >> /etc/redis/custom.conf
+echo "maxmemory-policy allkeys-lru" >> /etc/redis/custom.conf
+echo "port" ${REDIS_PORT} >> /etc/redis/custom.conf
+echo "bind" 0.0.0.0 >> /etc/redis/custom.conf
+echo "daemonize no" >> /etc/redis/custom.conf
+echo "protected-mode no" >> /etc/redis/custom.conf
+echo "vm.overcommit_memory = 1" >> /etc/sysctl.conf
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+redis-server /etc/redis/custom.conf
