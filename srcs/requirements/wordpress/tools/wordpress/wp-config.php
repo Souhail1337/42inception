@@ -55,7 +55,7 @@ define( 'SECURE_AUTH_SALT', 'put your unique phrase here' );
 define( 'LOGGED_IN_SALT',   'put your unique phrase here' );
 define( 'NONCE_SALT',       'put your unique phrase here' );
 
-
+define('WP_CACHE', true);
 define('WP_REDIS_HOST', 'redis');
 define('WP_REDIS_PORT', '6379');
 define('WP_REDIS_PASSWORD', 'password');

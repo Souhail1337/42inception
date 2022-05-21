@@ -6,6 +6,5 @@ RUN apt install redis-server -y
 
 COPY tools/setup.sh .
 RUN chmod +x setup.sh
-
-CMD sh setup.sh
 EXPOSE 6379
+CMD sh setup.sh
